@@ -1,0 +1,43 @@
+<suki:SukiWindow xmlns="https://github.com/avaloniaui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:vm="using:TiendaSegundaMano.ViewModels"
+                 xmlns:suki="https://github.com/kikipoulet/SukiUI"
+                 xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+                 x:Class="TiendaSegundaMano.Views.MainWindow"
+                 x:DataType="vm:MainViewModel"
+                 Icon="/Assets/avalonia-logo.ico"
+                 Title="ReMarket - Tienda de Segunda Mano"
+                 Width="1200" Height="800">
+
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <suki:SukiSideMenu IsSearchEnabled="True"
+                       ItemsSource="{Binding NavigationService.ListaVistas}"
+                       SelectedItem="{Binding NavigationService.VistaActual}"
+                       Content="{Binding NavigationService.VistaActual}">
+
+        <suki:SukiSideMenu.HeaderContent>
+            <StackPanel Orientation="Horizontal" Spacing="10" Margin="16,20,16,10" VerticalAlignment="Center">
+                <avalonia:MaterialIcon Kind="ShoppingOutline" Width="28" Height="28" Foreground="#13C1AC" />
+                <TextBlock Text="ReMarket" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" />
+            </StackPanel>
+        </suki:SukiSideMenu.HeaderContent>
+
+        <suki:SukiSideMenu.ItemTemplate>
+            <DataTemplate x:DataType="vm:ViewModelBase">
+                <suki:SukiSideMenuItem Header="{Binding Titulo}">
+                    <suki:SukiSideMenuItem.Icon>
+                        <avalonia:MaterialIcon Kind="{Binding Icono}" />
+                    </suki:SukiSideMenuItem.Icon>
+                </suki:SukiSideMenuItem>
+            </DataTemplate>
+        </suki:SukiSideMenu.ItemTemplate>
+
+    </suki:SukiSideMenu>
+
+</suki:SukiWindow>
